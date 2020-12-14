@@ -23,6 +23,7 @@ import java.io.IOException
 
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
+    //val sharedPreference: SharedPreference = SharedPreference(this.requireContext())
 
     private val args by navArgs<DetailsFragmentArgs>()
 
@@ -90,18 +91,18 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             // set image as a wallpaper
             wallpaperButton.setOnClickListener {
-                Toast.makeText(context, "Wait", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Wait", Toast.LENGTH_SHORT).show()
 
                 val bmap = imageView.drawable.toBitmap()
                 val m = WallpaperManager.getInstance(context)
 
                 try {
                     m.setBitmap(bmap)
-                    Toast.makeText(context, "WallPaper set", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "WallPaper set", Toast.LENGTH_SHORT).show()
                 } catch (e: IOException) {
 
                     Toast.makeText(context, "Setting WallPaper Failed!!", Toast.LENGTH_SHORT)
-                        .show();
+                        .show()
                 }
             }
         }
