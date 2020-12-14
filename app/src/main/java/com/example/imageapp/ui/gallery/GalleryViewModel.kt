@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.example.imageapp.data.UnsplashRepository
 
+// initiates/handles queries
 class GalleryViewModel @ViewModelInject constructor(
     private val repository: UnsplashRepository,
     @Assisted state:SavedStateHandle

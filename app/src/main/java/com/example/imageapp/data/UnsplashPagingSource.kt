@@ -7,12 +7,14 @@ import java.io.IOException
 
 private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 
+// sets up Unsplash query settings
 class UnsplashPagingSource(
     private val unsplashApi: UnsplashApi,
     private val query: String
 ) : PagingSource<Int, UnsplashPhoto>() {
 
-    //Paging 3 takes care of calling this method
+    // queries photos from Unsplash
+    // Paging 3 takes care of calling this method
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashPhoto> {
         val position = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
 

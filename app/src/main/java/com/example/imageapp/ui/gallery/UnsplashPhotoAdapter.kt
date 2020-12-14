@@ -11,6 +11,7 @@ import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.ItemUnsplashImageBinding
 
+// Gallery view loading
 class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
 
@@ -29,7 +30,6 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
         }
     }
 
-    //binding later allows us to access view in a ???
     inner class PhotoViewHolder(private val binding: ItemUnsplashImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
