@@ -1,10 +1,13 @@
 package com.example.imageapp.ui.details
 
+import android.app.WallpaperManager
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -16,6 +19,8 @@ import com.bumptech.glide.request.target.Target
 import com.example.imageapp.MainActivity
 import com.example.imageapp.R
 import com.example.imageapp.databinding.FragmentDetailsBinding
+import java.io.IOException
+
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
@@ -27,15 +32,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         val binding = FragmentDetailsBinding.bind(view)
 
-
-
         binding.apply {
             val photo = args.photo
 
             Glide.with(this@DetailsFragment)
                 .load(photo.urls.full)
-                .error(R.drawable.ic_error)
-                .listener(object : RequestListener<Drawable>{
+                .error(R.drawable.ic_no_image)
+                .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed( // error
                         e: GlideException?,
                         model: Any?,
@@ -56,6 +59,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         progressBar.isVisible = false
                         textViewCreator.isVisible = true
                         textViewDescription.isVisible = photo.description != null
+                        likeButton.isVisible = true
+                        wallpaperButton.isVisible = true
+
                         return false
                     }
                 })
@@ -64,7 +70,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             // clickable username
             textViewDescription.text = photo.description
 
-            val uri = Uri.parse(photo.user.attributionUrl)
+            val uri = Uri.parse(photo.links.html)
             val intent = Intent(Intent.ACTION_VIEW, uri)
 
             (activity as MainActivity).supportActionBar?.title = photo.user.username
@@ -76,6 +82,27 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 }
                 paint.isUnderlineText = true
 
+            }
+
+            likeButton.setOnClickListener {
+                likeButton.setImageResource(R.drawable.ic_like_liked)
+            }
+
+            // set image as a wallpaper
+            wallpaperButton.setOnClickListener {
+                Toast.makeText(context, "Wait", Toast.LENGTH_SHORT).show();
+
+                val bmap = imageView.drawable.toBitmap()
+                val m = WallpaperManager.getInstance(context)
+
+                try {
+                    m.setBitmap(bmap)
+                    Toast.makeText(context, "WallPaper set", Toast.LENGTH_SHORT).show();
+                } catch (e: IOException) {
+
+                    Toast.makeText(context, "Setting WallPaper Failed!!", Toast.LENGTH_SHORT)
+                        .show();
+                }
             }
         }
     }

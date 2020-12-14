@@ -50,7 +50,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                     .load(photo.urls.regular)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
+                    .error(R.drawable.ic_no_image)
                     .into(imageView)
 
                 textViewUserName.text = photo.user.username
