@@ -87,6 +87,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 if (query != null) {
+                    binding.recyclerView.scrollToPosition(0)
+                    viewModel.searchPhotos(query)
                     searchView.clearFocus()
                 }
                 return true
@@ -94,10 +96,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
-                if (newText != null) {
-                    binding.recyclerView.scrollToPosition(0)
-                    viewModel.searchPhotos(newText)
-                }
+//                if (newText != null) {
+//                    binding.recyclerView.scrollToPosition(0)
+//                    viewModel.searchPhotos(newText)
+//                }
                 return true
             }
         })

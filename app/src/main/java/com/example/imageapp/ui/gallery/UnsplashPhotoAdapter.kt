@@ -29,7 +29,6 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
         }
     }
 
-    //binding later allows us to access view in a ???
     inner class PhotoViewHolder(private val binding: ItemUnsplashImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
