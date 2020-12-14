@@ -1,6 +1,5 @@
 package com.example.imageapp.data
 
-import android.app.DownloadManager
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
