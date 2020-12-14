@@ -22,8 +22,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
 
     private val viewModel by viewModels<GalleryViewModel>()
 
-    // code that kills binding when a fragment kills to avoid the situation where
-    // the activity is dead but there is still fragment binding which would cause application crash
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
 
@@ -35,8 +33,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
         val adapter = UnsplashPhotoAdapter(this)
 
         // region loadstate header/footer (progress bar on loading + retry)
-        // recyclerView is a layout container
-        // that also handles deleting currently unused items to save memory
         binding.apply {
             recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = null
