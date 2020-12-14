@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -72,7 +73,8 @@
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_like"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <ImageButton
                     android:id="@+id/wallpaper_button"
@@ -80,18 +82,27 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
-                    android:padding="5dp"
+                    android:padding="8dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_wallpaper"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <ProgressBar
+    <com.vlad1m1r.lemniscate.funny.HeartProgressView
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        app:duration="1500"
+        app:hasHole="true"
+        app:lineColor="#DC143C"
+        app:maxLineLength="0.9"
+        app:minLineLength="0.3"
+        app:sizeMultiplier="1"
+        app:strokeWidth="3dp" />
+
 </FrameLayout>

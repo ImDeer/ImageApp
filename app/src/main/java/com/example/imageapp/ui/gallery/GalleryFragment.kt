@@ -15,6 +15,8 @@ import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_gallery.*
+import kotlinx.android.synthetic.main.item_unsplash_image.view.*
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapter.OnItemClickListener {
@@ -95,11 +97,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-
-//                if (newText != null) {
-//                    binding.recyclerView.scrollToPosition(0)
-//                    viewModel.searchPhotos(newText)
-//                }
                 return true
             }
         })

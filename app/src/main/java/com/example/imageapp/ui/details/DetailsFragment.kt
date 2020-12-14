@@ -84,8 +84,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             }
 
+            var liked = true
             likeButton.setOnClickListener {
-                likeButton.setImageResource(R.drawable.ic_like_liked)
+                if (!liked)
+                    likeButton.setImageResource(R.drawable.ic_like_liked)
+                else
+                    likeButton.setImageResource(R.drawable.ic_like)
+                liked = !liked
             }
 
             // set image as a wallpaper

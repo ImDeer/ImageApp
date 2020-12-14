@@ -2,14 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="10dp">
 
-    <ProgressBar
+    <com.vlad1m1r.lemniscate.funny.HeartProgressView
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:duration="1500"
+        app:hasHole="false"
+        app:lineColor="#DC143C"
+        app:maxLineLength="0.9"
+        app:minLineLength="0.3"
+        app:sizeMultiplier="1"
+        app:strokeWidth="3dp" />
 
 
     <TextView
@@ -17,11 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Results could not be loaded" />
-
-    <Button
+    <ImageButton
         android:id="@+id/button_retry"
+        android:background="@null"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retry" />
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+<!--    <Button-->
+<!--        android:id="@+id/button_retry"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Retry" />-->
 
 </LinearLayout>
