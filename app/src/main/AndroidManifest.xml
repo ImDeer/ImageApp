@@ -3,8 +3,6 @@
     package="com.example.imageapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- needed to reload the page as soon as the internet is back -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />

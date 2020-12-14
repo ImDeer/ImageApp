@@ -1,12 +1,13 @@
 package com.example.imageapp.api
 
+import android.os.Build
 import com.example.imageapp.BuildConfig
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface UnsplashApi { // needs a retrofit object which Dagger will create and inject where needed
-    // sets up all the settings Retrofit needs to ask Unsplash for some pictures
 
     companion object { // "companion" makes the variables static
         const val BASE_URL = "https://api.unsplash.com/"

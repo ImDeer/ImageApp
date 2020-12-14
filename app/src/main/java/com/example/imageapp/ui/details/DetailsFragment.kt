@@ -21,7 +21,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val args by navArgs<DetailsFragmentArgs>()
 
-    // loads details fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,7 +35,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 .load(photo.urls.full)
                 .error(R.drawable.ic_error)
                 .listener(object : RequestListener<Drawable>{
-                    override fun onLoadFailed( // error
+                    override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
                         target: Target<Drawable>?,
@@ -46,7 +45,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         return false
                     }
 
-                    override fun onResourceReady( // ok
+                    override fun onResourceReady(
                         resource: Drawable?,
                         model: Any?,
                         target: Target<Drawable>?,
@@ -61,7 +60,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 })
                 .into(imageView)
 
-            // clickable username
             textViewDescription.text = photo.description
 
             val uri = Uri.parse(photo.user.attributionUrl)

@@ -16,9 +16,8 @@ import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint // Navigation
-class GalleryFragment : Fragment(R.layout.fragment_gallery),
-    UnsplashPhotoAdapter.OnItemClickListener {
+@AndroidEntryPoint
+class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<GalleryViewModel>()
 
@@ -32,7 +31,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
 
         val adapter = UnsplashPhotoAdapter(this)
 
-        // region loadstate header/footer (progress bar on loading + retry)
         binding.apply {
             recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = null
@@ -67,12 +65,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
                     textViewEmpty.isVisible = false
                 }
             }
-        } // endregion
+        }
 
-        setHasOptionsMenu(true) // enables search menu icon
+        setHasOptionsMenu(true)
     }
 
-    // navigate to details view on fragment click
     override fun onItemClick(photo: UnsplashPhoto) {
         val action = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment(photo)
         findNavController().navigate(action)
@@ -86,7 +83,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        // search handling
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
