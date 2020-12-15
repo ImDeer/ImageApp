@@ -21,7 +21,8 @@ interface UnsplashApi { // needs a retrofit object which Dagger will create and 
         // which will be taken care of by Paging 3 automatically
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int
+        @Query("per_page") perPage: Int,
+        @Query("order_by") orderBy: String = "latest"
     ): UnsplashResponce
 
     @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")

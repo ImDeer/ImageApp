@@ -2,6 +2,7 @@ package com.example.imageapp.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,8 @@ import com.google.firebase.ktx.Firebase
 
 class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
+
+    val imagesRef = Firebase.database.getReference("unsplashImages")///OzAeZPNsLXk/liked")
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -47,7 +50,35 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                         listener.onItemClick(item)
                 }
             }
+
+//            binding.likeButton.setOnClickListener {
+//                val position = bindingAdapterPosition
+//                if (position != RecyclerView.NO_POSITION) {
+//                    val item = getItem(position)
+//                    if (item != null)
+//                        if (!getLikedState(item))
+//                            imagesRef.setValue("${item.id}/liked/true")
+//                        else
+//                            imagesRef.child(item.id.toString()).removeValue()
+//                }
+//            }
         }
+
+//        fun getLikedState(photo: UnsplashPhoto): Boolean {
+//            var liked = false
+//            imagesRef.child(photo.id.toString())
+//                .addValueEventListener(object : ValueEventListener {
+//                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                        // This method is called once with the initial value and again
+//                        // whenever data at this location is updated.
+//                        liked = dataSnapshot.exists() && dataSnapshot.child("liked").value == true
+//                    }
+//
+//                    override fun onCancelled(error: DatabaseError) {}
+//
+//                })
+//            return liked
+//        }
 
         fun bind(photo: UnsplashPhoto) {
             binding.apply {
@@ -57,6 +88,27 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_no_image)
                     .into(imageView)
+
+                imagesRef.child(photo.id.toString())
+                    .addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            // This method is called once with the initial value and again
+                            // whenever data at this location is updated.
+                            if (dataSnapshot.exists() && dataSnapshot.child("liked").value == true)
+                                likeButton.setImageResource(R.drawable.ic_like_liked)
+                            else
+                                likeButton.setImageResource(R.drawable.ic_like)
+
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+
+
+//                if(getLikedState(photo))
+//                    likeButton.setImageResource(R.drawable.ic_like_liked)
+//                else
+//                    likeButton.setImageResource(R.drawable.ic_like)
 
                 textViewUserName.text = photo.user.username
             }

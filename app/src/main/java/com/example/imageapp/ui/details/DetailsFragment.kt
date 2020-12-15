@@ -36,7 +36,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageRef = Firebase.database.getReference("unsplashImages/${args.photo.id}/liked")
+        val imageRef = Firebase.database.getReference("unsplashImages")//${args.photo.id}/liked")
 
         var liked = false
 
@@ -95,15 +95,12 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             }
 
-            imageRef.addValueEventListener(object : ValueEventListener {
+            imageRef.child(photo.id.toString()).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    if (!dataSnapshot.exists())
-                        imageRef.child("${photo.id}").child("liked")
-                            .setValue(false)
-
-                    liked = dataSnapshot.value == true
+                    if (dataSnapshot.exists())
+                        liked = dataSnapshot.child("liked").value == true
 
                     if (liked)
                         likeButton.setImageResource(R.drawable.ic_like_liked)
@@ -121,9 +118,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             // change liked state
             likeButton.setOnClickListener {
                 if (!liked)
-                    imageRef.setValue(true)
-                else
-                    imageRef.setValue(false)
+                    imageRef.child(photo.id.toString()).child("liked").setValue(true)
+                else {
+                    liked = false
+                    imageRef.child(photo.id.toString()).removeValue()
+                }
 
             }
 

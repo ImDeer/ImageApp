@@ -21,7 +21,8 @@ import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.item_unsplash_image.view.*
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapter.OnItemClickListener {
+class GalleryFragment : Fragment(R.layout.fragment_gallery),
+    UnsplashPhotoAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<GalleryViewModel>()
 
@@ -29,7 +30,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
     private val binding get() = _binding!!
 
 //    val myRef = Firebase.database.getReference("unsplashImages")///OzAeZPNsLXk/liked")
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +64,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
 //                recyclerView.like_button.setImageResource(R.drawable.ic_like_liked)
 
+
+
                 // empty view
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
@@ -77,6 +79,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             }
         }
 
+//        recycler_view.like_button.setOnClickListener(object : View.OnClickListener)
 
         setHasOptionsMenu(true)
 
