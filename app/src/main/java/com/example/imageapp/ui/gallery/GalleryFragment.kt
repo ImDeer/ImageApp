@@ -29,8 +29,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
 
-//    val myRef = Firebase.database.getReference("unsplashImages")///OzAeZPNsLXk/liked")
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,9 +60,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
                 recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
                 buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
-//                recyclerView.like_button.setImageResource(R.drawable.ic_like_liked)
-
-
 
                 // empty view
                 if (loadState.source.refresh is LoadState.NotLoading &&

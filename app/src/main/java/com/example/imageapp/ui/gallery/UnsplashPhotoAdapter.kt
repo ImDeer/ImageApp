@@ -41,6 +41,8 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     inner class PhotoViewHolder(private val binding: ItemUnsplashImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        var liked = false
+
         init {
             binding.root.setOnClickListener {
                 val position = bindingAdapterPosition
@@ -51,27 +53,45 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                 }
             }
 
-//            binding.likeButton.setOnClickListener {
-//                val position = bindingAdapterPosition
-//                if (position != RecyclerView.NO_POSITION) {
-//                    val item = getItem(position)
-//                    if (item != null)
-//                        if (!getLikedState(item))
-//                            imagesRef.setValue("${item.id}/liked/true")
-//                        else
-//                            imagesRef.child(item.id.toString()).removeValue()
-//                }
-//            }
+            binding.likeButton.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+
+                        imagesRef.child(item.id.toString())
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    // This method is called once with the initial value and again
+                                    // whenever data at this location is updated.
+                                    liked =
+                                        dataSnapshot.exists() && dataSnapshot.child("liked").value == true
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {}
+
+                            })
+
+                        if (!liked) {
+                            imagesRef.child(item.id.toString()).child("liked").setValue(true)
+                            binding.likeButton.setImageResource(R.drawable.ic_like_liked)
+                        } else {
+                            imagesRef.child(item.id.toString()).removeValue()
+                            binding.likeButton.setImageResource(R.drawable.ic_like)
+                        }
+                    }
+                }
+            }
         }
 
-//        fun getLikedState(photo: UnsplashPhoto): Boolean {
-//            var liked = false
+//        fun getLikedState(photo: UnsplashPhoto):Boolean {
 //            imagesRef.child(photo.id.toString())
 //                .addValueEventListener(object : ValueEventListener {
 //                    override fun onDataChange(dataSnapshot: DataSnapshot) {
 //                        // This method is called once with the initial value and again
 //                        // whenever data at this location is updated.
-//                        liked = dataSnapshot.exists() && dataSnapshot.child("liked").value == true
+//                        liked =
+//                            dataSnapshot.exists() && dataSnapshot.child("liked").value == true
 //                    }
 //
 //                    override fun onCancelled(error: DatabaseError) {}
