@@ -45,6 +45,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_like_liked"
         android:tint="#FFFFFF"
+        android:visibility="gone"
         tools:visibility="visible" />
 
 </RelativeLayout>
