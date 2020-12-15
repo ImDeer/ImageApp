@@ -14,6 +14,8 @@ import androidx.paging.LoadState
 import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.FragmentGalleryBinding
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.item_unsplash_image.view.*
@@ -25,6 +27,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
 
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
+
+//    val myRef = Firebase.database.getReference("unsplashImages")///OzAeZPNsLXk/liked")
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,12 +55,14 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
+
         adapter.addLoadStateListener { loadState ->
             binding.apply {
                 progressBar.isVisible = loadState.source.refresh is LoadState.Loading
                 recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
                 buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
+//                recyclerView.like_button.setImageResource(R.drawable.ic_like_liked)
 
                 // empty view
                 if (loadState.source.refresh is LoadState.NotLoading &&
@@ -69,7 +77,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             }
         }
 
+
         setHasOptionsMenu(true)
+
+
     }
 
     override fun onItemClick(photo: UnsplashPhoto) {

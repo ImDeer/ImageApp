@@ -2,6 +2,7 @@ package com.example.imageapp.api
 
 import android.os.Build
 import com.example.imageapp.BuildConfig
+import com.example.imageapp.data.UnsplashPhoto
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -22,4 +23,13 @@ interface UnsplashApi { // needs a retrofit object which Dagger will create and 
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): UnsplashResponce
+
+    @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
+    @GET("photos")
+    suspend fun getPhotos( // suspending function can be paused which helps handle threading,
+        // which will be taken care of by Paging 3 automatically
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int,
+        @Query("order_by") orderBy: String = "latest"
+    ): List<UnsplashPhoto>
 }

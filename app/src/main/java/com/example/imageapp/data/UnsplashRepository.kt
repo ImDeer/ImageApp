@@ -17,6 +17,6 @@ class UnsplashRepository @Inject constructor(private val unsplashApi:UnsplashApi
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { UnsplashPagingSource(unsplashApi, if(query != "") query else "popular" )}
+            pagingSourceFactory = { UnsplashPagingSource(unsplashApi, if(query != "") query else "latest" )}
         ).liveData
 }

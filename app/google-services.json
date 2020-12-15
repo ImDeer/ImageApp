@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "713112297126",
+    "firebase_url": "https://imageapp-d4cec-default-rtdb.firebaseio.com",
+    "project_id": "imageapp-d4cec",
+    "storage_bucket": "imageapp-d4cec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713112297126:android:a9e29cc4decc880f86de67",
+        "android_client_info": {
+          "package_name": "com.example.imageapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713112297126-a7j2kpmgdvltvisk16cc74imlut9csvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.imageapp",
+            "certificate_hash": "4f042de663e0475358a15a89df180a1cd7949a49"
+          }
+        },
+        {
+          "client_id": "713112297126-vm24t9f1k0j1m4vrokkfmkup87521pfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzwvUBrFOlAjxuRikcr6h6GelGNDIyBFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713112297126-vm24t9f1k0j1m4vrokkfmkup87521pfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

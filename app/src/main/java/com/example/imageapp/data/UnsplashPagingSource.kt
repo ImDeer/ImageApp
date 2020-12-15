@@ -1,5 +1,6 @@
 package com.example.imageapp.data
 
+import android.widget.Toast
 import androidx.paging.PagingSource
 import com.example.imageapp.api.UnsplashApi
 import retrofit2.HttpException
@@ -17,9 +18,13 @@ class UnsplashPagingSource(
         val position = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
 
         return try {
-            val response = unsplashApi.searchPhotos(query, position, params.loadSize)
-            val photos = response.results
-
+            val photos = if (query!="") {
+                val response = unsplashApi.searchPhotos(query, position, params.loadSize)
+                response.results
+            } else {
+                val response = unsplashApi.getPhotos(position, params.loadSize)
+                response
+            }
             LoadResult.Page(
                 data = photos,
                 prevKey = if (position == UNSPLASH_STARTING_PAGE_INDEX) null else position - 1,

@@ -10,9 +10,15 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.ItemUnsplashImageBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val binding =
@@ -35,10 +41,10 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
         init {
             binding.root.setOnClickListener {
                 val position = bindingAdapterPosition
-                if(position!=RecyclerView.NO_POSITION){
+                if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
                     if (item != null)
-                    listener.onItemClick(item)
+                        listener.onItemClick(item)
                 }
             }
         }

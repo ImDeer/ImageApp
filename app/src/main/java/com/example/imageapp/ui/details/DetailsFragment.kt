@@ -19,6 +19,11 @@ import com.bumptech.glide.request.target.Target
 import com.example.imageapp.MainActivity
 import com.example.imageapp.R
 import com.example.imageapp.databinding.FragmentDetailsBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.io.IOException
 
 
@@ -26,11 +31,17 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val args by navArgs<DetailsFragmentArgs>()
 
+
     // loads details fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val imageRef = Firebase.database.getReference("unsplashImages/${args.photo.id}/liked")
+
+        var liked = false
+
         val binding = FragmentDetailsBinding.bind(view)
+
 
         binding.apply {
             val photo = args.photo
@@ -84,13 +95,36 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             }
 
-            var liked = true
+            imageRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    if (!dataSnapshot.exists())
+                        imageRef.child("${photo.id}").child("liked")
+                            .setValue(false)
+
+                    liked = dataSnapshot.value == true
+
+                    if (liked)
+                        likeButton.setImageResource(R.drawable.ic_like_liked)
+                    else
+                        likeButton.setImageResource(R.drawable.ic_like)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Toast.makeText(context, "Oops", Toast.LENGTH_SHORT).show()
+
+                }
+            })
+
+            // change liked state
             likeButton.setOnClickListener {
                 if (!liked)
-                    likeButton.setImageResource(R.drawable.ic_like_liked)
+                    imageRef.setValue(true)
                 else
-                    likeButton.setImageResource(R.drawable.ic_like)
-                liked = !liked
+                    imageRef.setValue(false)
+
             }
 
             // set image as a wallpaper
