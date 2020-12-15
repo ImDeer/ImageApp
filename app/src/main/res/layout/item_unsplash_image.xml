@@ -43,9 +43,6 @@
         android:background="@null"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_like"
-        android:tint="#FFFFFF"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:src="@drawable/ic_like" />
 
 </RelativeLayout>
