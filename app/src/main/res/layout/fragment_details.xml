@@ -24,7 +24,8 @@
                 android:adjustViewBounds="true"
                 tools:layout_height="300dp"
                 tools:scaleType="centerCrop"
-                tools:src="@mipmap/ic_launcher_round" />
+                tools:src="@mipmap/ic_launcher_round"
+                android:contentDescription="@string/unsplash_image" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,7 +34,7 @@
                 android:minHeight="50dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
@@ -74,7 +75,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_like"
                     android:visibility="gone"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    android:contentDescription="@string/like" />
 
                 <ImageButton
                     android:id="@+id/wallpaper_button"
@@ -86,7 +88,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_wallpaper"
                     android:visibility="gone"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    android:contentDescription="@string/set_wallpaper" />
 
             </LinearLayout>
         </LinearLayout>

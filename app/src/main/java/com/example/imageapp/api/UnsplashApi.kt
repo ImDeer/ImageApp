@@ -1,10 +1,8 @@
 package com.example.imageapp.api
 
-import android.os.Build
 import com.example.imageapp.BuildConfig
 import com.example.imageapp.data.UnsplashPhoto
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Query
 

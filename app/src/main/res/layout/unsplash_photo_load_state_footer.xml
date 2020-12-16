@@ -25,19 +25,19 @@
         android:id="@+id/text_view_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Results could not be loaded" />
+        android:text="@string/results_could_not_be_loaded" />
 
     <ImageButton
         android:id="@+id/button_retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:background="@null"
         android:padding="8dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_refresh"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/retry" />
 
 
 </LinearLayout>

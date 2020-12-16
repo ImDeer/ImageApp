@@ -7,6 +7,7 @@
 
     <ImageView
         android:id="@+id/image_view"
+        android:contentDescription="@string/unsplash_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -42,6 +43,7 @@
         android:background="@null"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_like_white" />
+        android:src="@drawable/ic_like_white"
+        android:contentDescription="@string/like" />
 
 </RelativeLayout>

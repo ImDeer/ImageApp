@@ -95,7 +95,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             }
 
-            imageRef.child(photo.id.toString()).addValueEventListener(object : ValueEventListener {
+            imageRef.child(photo.id).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
@@ -118,10 +118,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             // change liked state
             likeButton.setOnClickListener {
                 if (!liked)
-                    imageRef.child(photo.id.toString()).child("liked").setValue(true)
+                    imageRef.child(photo.id).child("liked").setValue(true)
                 else {
                     liked = false
-                    imageRef.child(photo.id.toString()).removeValue()
+                    imageRef.child(photo.id).removeValue()
                 }
 
             }

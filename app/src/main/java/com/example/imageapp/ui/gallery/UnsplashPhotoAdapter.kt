@@ -2,7 +2,6 @@ package com.example.imageapp.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -72,10 +71,10 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
 //                            })
 
                         if (!liked) {
-                            imagesRef.child(item.id.toString()).child("liked").setValue(true)
+                            imagesRef.child(item.id).child("liked").setValue(true)
 //                            binding.likeButton.setImageResource(R.drawable.ic_like_liked)
                         } else {
-                            imagesRef.child(item.id.toString()).removeValue()
+                            imagesRef.child(item.id).removeValue()
 //                            binding.likeButton.setImageResource(R.drawable.ic_like)
                         }
                     }
@@ -83,8 +82,8 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun getLikedState(photo: UnsplashPhoto) {
-            imagesRef.child(photo.id.toString())
+        private fun getLikedState(photo: UnsplashPhoto) {
+            imagesRef.child(photo.id)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         // This method is called once with the initial value and again

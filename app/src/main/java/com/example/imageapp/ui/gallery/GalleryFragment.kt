@@ -3,7 +3,6 @@ package com.example.imageapp.ui.gallery
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -15,11 +14,7 @@ import androidx.paging.LoadState
 import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.FragmentGalleryBinding
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_gallery.*
-import kotlinx.android.synthetic.main.item_unsplash_image.view.*
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment(R.layout.fragment_gallery),
@@ -93,14 +88,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
         inflater.inflate(R.menu.menu_gallery, menu)
 
         val homeItem = menu.findItem(R.id.action_home)
-        homeItem.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem?): Boolean {
-                binding.recyclerView.scrollToPosition(0)
-                viewModel.searchPhotos("")
-                return true
-            }
-
-        })
+        homeItem.setOnMenuItemClickListener {
+            binding.recyclerView.scrollToPosition(0)
+            viewModel.searchPhotos("")
+            true
+        }
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView

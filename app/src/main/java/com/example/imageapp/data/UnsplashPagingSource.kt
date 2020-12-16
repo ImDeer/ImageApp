@@ -1,6 +1,5 @@
 package com.example.imageapp.data
 
-import android.widget.Toast
 import androidx.paging.PagingSource
 import com.example.imageapp.api.UnsplashApi
 import retrofit2.HttpException
