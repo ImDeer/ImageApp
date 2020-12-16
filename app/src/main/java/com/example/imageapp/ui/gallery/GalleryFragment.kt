@@ -3,6 +3,7 @@ package com.example.imageapp.ui.gallery
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -91,17 +92,25 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
 
         inflater.inflate(R.menu.menu_gallery, menu)
 
+        val homeItem = menu.findItem(R.id.action_home)
+        homeItem.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                binding.recyclerView.scrollToPosition(0)
+                viewModel.searchPhotos("")
+                return true
+            }
+
+        })
+
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                if (query != null) {
-                    binding.recyclerView.scrollToPosition(0)
-                    viewModel.searchPhotos(query)
-                    searchView.clearFocus()
-                }
+                binding.recyclerView.scrollToPosition(0)
+                viewModel.searchPhotos(query ?: "")
+                searchView.clearFocus()
                 return true
             }
 
