@@ -60,6 +60,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         return false
                     }
 
+
                     override fun onResourceReady( // ok
                         resource: Drawable?,
                         model: Any?,
@@ -72,6 +73,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         textViewDescription.isVisible = photo.description != null
                         likeButton.isVisible = true
                         wallpaperButton.isVisible = true
+                        gradient.isVisible = true
+
+                        imageViewBg.setImageDrawable(resource)
+                        imageViewBg.setBlur(5)
+
 
                         return false
                     }
@@ -105,7 +111,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     if (liked)
                         likeButton.setImageResource(R.drawable.ic_like_liked)
                     else
-                        likeButton.setImageResource(R.drawable.ic_like)
+                        likeButton.setImageResource(R.drawable.ic_like_white)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

@@ -57,25 +57,10 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                 if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
                     if (item != null) {
-//                        imagesRef.child(item.id.toString())
-//                            .addValueEventListener(object : ValueEventListener {
-//                                override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                                    // This method is called once with the initial value and again
-//                                    // whenever data at this location is updated.
-//                                    liked =
-//                                        dataSnapshot.exists() && dataSnapshot.child("liked").value == true
-//                                }
-//
-//                                override fun onCancelled(error: DatabaseError) {}
-//
-//                            })
-
                         if (!liked) {
                             imagesRef.child(item.id).child("liked").setValue(true)
-//                            binding.likeButton.setImageResource(R.drawable.ic_like_liked)
                         } else {
                             imagesRef.child(item.id).removeValue()
-//                            binding.likeButton.setImageResource(R.drawable.ic_like)
                         }
                     }
                 }
@@ -91,10 +76,8 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                         liked =
                             dataSnapshot.exists() && dataSnapshot.child("liked").value == true
                         if (liked) {
-//                            imagesRef.child(item.id.toString()).child("liked").setValue(true)
                             binding.likeButton.setImageResource(R.drawable.ic_like_liked)
                         } else {
-//                            imagesRef.child(item.id.toString()).removeValue()
                             binding.likeButton.setImageResource(R.drawable.ic_like_white)
                         }
                     }
@@ -102,7 +85,6 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                     override fun onCancelled(error: DatabaseError) {}
 
                 })
-//            return liked
         }
 
         fun bind(photo: UnsplashPhoto) {
@@ -112,29 +94,9 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_no_image)
+                    .thumbnail(Glide.with(itemView).load(photo.urls.thumb).centerCrop())
                     .into(imageView)
                 getLikedState(photo)
-
-//                imagesRef.child(photo.id.toString())
-//                    .addValueEventListener(object : ValueEventListener {
-//                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                            // This method is called once with the initial value and again
-//                            // whenever data at this location is updated.
-//                            if (dataSnapshot.exists() && dataSnapshot.child("liked").value == true)
-//                                likeButton.setImageResource(R.drawable.ic_like_liked)
-//                            else
-//                                likeButton.setImageResource(R.drawable.ic_like)
-//
-//                        }
-//
-//                        override fun onCancelled(error: DatabaseError) {}
-//                    })
-
-
-//                if(getLikedState(photo))
-//                    likeButton.setImageResource(R.drawable.ic_like_liked)
-//                else
-//                    likeButton.setImageResource(R.drawable.ic_like)
 
                 textViewUserName.text = photo.user.username
             }

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.imageapp.MainActivity
 import com.example.imageapp.R
 import com.example.imageapp.data.UnsplashPhoto
 import com.example.imageapp.databinding.FragmentGalleryBinding

@@ -18,7 +18,7 @@ class UnsplashPagingSource(
 
         return try {
             val photos = if (query!="") {
-                val response = unsplashApi.searchPhotos(query, position, 20)//params.loadSize)
+                val response = unsplashApi.searchPhotos(query, position, 5)//params.loadSize)
                 response.results
             } else {
                 val response = unsplashApi.getPhotos(position, params.loadSize)
