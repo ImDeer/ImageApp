@@ -71,8 +71,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
             }
         }
 
-//        recycler_view.like_button.setOnClickListener(object : View.OnClickListener)
-
         setHasOptionsMenu(true)
 
 

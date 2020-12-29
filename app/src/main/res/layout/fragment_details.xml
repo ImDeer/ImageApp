@@ -96,7 +96,7 @@
             android:contentDescription="@string/like"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_like_white"
+            android:src="@drawable/ic_like"
             android:visibility="gone"
             tools:visibility="visible" />
 

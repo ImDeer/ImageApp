@@ -111,7 +111,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     if (liked)
                         likeButton.setImageResource(R.drawable.ic_like_liked)
                     else
-                        likeButton.setImageResource(R.drawable.ic_like_white)
+                        likeButton.setImageResource(R.drawable.ic_like)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

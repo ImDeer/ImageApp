@@ -78,7 +78,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                         if (liked) {
                             binding.likeButton.setImageResource(R.drawable.ic_like_liked)
                         } else {
-                            binding.likeButton.setImageResource(R.drawable.ic_like_white)
+                            binding.likeButton.setImageResource(R.drawable.ic_like)
                         }
                     }
 
